@@ -35,12 +35,19 @@ ExternalProject_Add(libkovan
   DEPENDS opencv
 )
 
+ExternalProject_Add(libkovanserial
+  PREFIX ${PREFIX}
+  GIT_REPOSITORY https://github.com/kipr/libkovanserial.git
+  INSTALL_DIR ${INSTALL_DIR}
+  CMAKE_ARGS ${CMAKE_ARGS}
+)
+
 ExternalProject_Add(kiss
   PREFIX ${PREFIX}
   GIT_REPOSITORY https://github.com/kipr/kiss.git
   INSTALL_DIR ${INSTALL_DIR}
   CMAKE_ARGS ${CMAKE_ARGS}
-  DEPENDS libkar pcompiler
+  DEPENDS libkar pcompiler libkovanserial
 )
 
 ExternalProject_Add(computer
@@ -48,5 +55,5 @@ ExternalProject_Add(computer
   GIT_REPOSITORY https://github.com/kipr/computer.git
   INSTALL_DIR ${INSTALL_DIR}
   CMAKE_ARGS ${CMAKE_ARGS}
-  DEPENDS kiss libkovan
+  DEPENDS kiss libkovan libkovanserial
 )
